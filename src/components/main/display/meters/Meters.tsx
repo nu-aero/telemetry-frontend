@@ -5,7 +5,12 @@ import Meter from './Meter';
 const Meters = () => {
   return (
     <MetersWrapper>
-      Meters
+      {
+        // Dummy Data
+        [0, 1, 2, 3, 4, 5].map((e) => {
+          return <Meter key={e} />;
+        })
+      }
     </MetersWrapper>
   );
 }
@@ -17,5 +22,5 @@ const MetersWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  margin-top: 0 /*-20px*/;
+  margin-top: -20px;
 `;

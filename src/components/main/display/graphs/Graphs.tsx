@@ -5,7 +5,12 @@ import Graph from './Graph';
 const Graphs = () => {
   return (
     <GraphsWrapper>
-      Graphs
+      {
+        // Dummy Data
+        [0, 1, 2, 3, 4, 5].map((e) => {
+          return <Graph key={e} />;
+        })
+      }
     </GraphsWrapper>
   );
 }
@@ -17,5 +22,5 @@ const GraphsWrapper = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 0 /*-20px*/;
+  margin-top: -20px;
 `;
