@@ -6,49 +6,49 @@ import { Context } from '../../../shared/Context';
 import { ToggleableProps } from '../../../shared/types';
 
 type Props = {
-  endpoint: string;
-  setEndpoint: (endpoint: string) => void; 
+  baseUrl: string;
+  setBaseUrl: (baseUrl: string) => void; 
 }
 
-const EndpointInput = ({
-  endpoint,
-  setEndpoint,
+const BaseURLInput = ({
+  baseUrl,
+  setBaseUrl,
 }: Props) => {
   const context = useContext(Context);
 
-  const [newEndpoint, setNewEndpoint] = useState('');
+  const [newBaseUrl, setNewBaseUrl] = useState('');
 
   const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
     let target = e.target as HTMLInputElement;
-    setNewEndpoint(target.value);
+    setNewBaseUrl(target.value);
   }
 
   const handleSubmit = () => {
-    if (newEndpoint !== '') {
-      setEndpoint(newEndpoint);
+    if (newBaseUrl !== '') {
+      setBaseUrl(newBaseUrl);
       context.setModalOpen(false);
     }
   }
 
   const handleDisconnect = () => {
-    setEndpoint('');
+    setBaseUrl('');
     context.setModalOpen(false);
   }
 
   return (
     <FormWrapper>
       <StyledLabel>
-        Backend Endpoint
+        Backend Base url
         <StyledInput
           type='text'
-          value={newEndpoint}
-          placeholder={endpoint ? endpoint : 'Enter base url'}
+          value={newBaseUrl}
+          placeholder={baseUrl ? baseUrl : 'Enter base url'}
           onInput={handleInput}
         />
       </StyledLabel>
       <ButtonTray>
         <Submit
-          active={newEndpoint !== ''}
+          active={newBaseUrl !== ''}
           onClick={handleSubmit}
         >
           Connect
@@ -64,7 +64,7 @@ const EndpointInput = ({
   );
 }
 
-export default EndpointInput;
+export default BaseURLInput;
 
 const FormWrapper = styled.div`
   margin-top: -8px;

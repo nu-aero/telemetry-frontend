@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 
 import styled from 'styled-components';
 
@@ -6,18 +6,17 @@ import Indicator from './indicator/Indicator';
 import Recorder from './Recorder';
 import Loader from './Loader';
 
+import { Context } from '../../shared/Context';
+
 import { ToggleableProps } from '../../shared/types';
 
 const ControlBar = () => {
-  const [isLive, setIsLive] = useState(false);
+  const context = useContext(Context);
 
   return (
     <BarWrapper>
-      <LiveControls active={isLive}>
-        <Indicator
-          isLive={isLive}
-          setIsLive={setIsLive}
-        />
+      <LiveControls active={context.isLive}>
+        <Indicator />
         <Recorder />
       </LiveControls>
       <Loader />

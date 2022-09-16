@@ -1,57 +1,45 @@
 import { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import EndpointInput from './EndpointInput';
+import BaseURLInput from './BaseUrlInput';
 
+import { checkConnection } from '../../../shared/api';
 import { Context } from '../../../shared/Context';
 
-import { ToggleableProps, DataPoint } from '../../../shared/types';
+import { ToggleableProps, RequestType } from '../../../shared/types';
 
-import axios, { AxiosRequestConfig } from 'axios';
-
-type Props = {
-  isLive: boolean;
-  setIsLive: (isLive: boolean) => void;
-}
-
-const Indicator = ({
-  isLive,
-  setIsLive,
-}: Props) => {
+const Indicator = () => {
   const context = useContext(Context);
   
-  const [endpoint, setEndpoint] = useState(localStorage.getItem('endpoint') ?? '');
+  const [baseUrl, setBaseUrl] = useState(localStorage.getItem('baseUrl') ?? '');
+  const [req, setReq] = useState<RequestType>({
+    baseUrl: baseUrl,
+    endpoint: '/api/read-sensors',
+    method: 'get',
+    timeout: 500,
+    failureCallback: () => context.setIsLive(false),
+    successCallback: () => context.setIsLive(true),
+  })
 
   useEffect(() => {
-    if (endpoint !== localStorage.getItem('endpoint')) {
-      localStorage.setItem('endpoint', endpoint);
+    if (baseUrl !== localStorage.getItem('baseUrl')) {
+      localStorage.setItem('baseUrl', baseUrl);
     }
-    axios({
-      method: 'get',
-      baseURL: `//${endpoint}`,
-      url: `/api/read-sensor`,
-      timeout: 500,
-    }).then(res => {
-      let casted = res.data as DataPoint;
-      if (
-        casted.time !== undefined &&
-        casted.s0 !== undefined &&
-        casted.s5 !== undefined
-      ) {
-        setIsLive(true);
-      } else {
-        setIsLive(false);
-      }
-    }).catch(err => {
-      setIsLive(false);
-    });
-  }, [endpoint]);
+    setReq(prevState => ({
+      ...prevState,
+      baseUrl: baseUrl,
+    }));    
+  }, [baseUrl]);
+
+  useEffect(() => {
+    checkConnection(req);
+  }, [req]);
 
   const toggleModal = () => {
     context.setModalContent(
-      <EndpointInput
-        endpoint={endpoint}
-        setEndpoint={setEndpoint}
+      <BaseURLInput
+        baseUrl={baseUrl}
+        setBaseUrl={setBaseUrl}
       />
     );
     context.setModalOpen(true);
@@ -59,7 +47,7 @@ const Indicator = ({
 
   return (
     <IndicatorButton
-      active={isLive}
+      active={context.isLive}
       onClick={toggleModal}
     >
       LIVE
