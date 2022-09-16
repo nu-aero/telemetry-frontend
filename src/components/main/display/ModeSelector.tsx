@@ -32,6 +32,7 @@ const Selector = styled.div`
   user-select: none;
   cursor: pointer;
   margin-bottom: 20px;
+  width: fit-content;
 `;
 
 const StyledText = styled.p<ToggleableProps>`
