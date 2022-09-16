@@ -54,7 +54,7 @@ const EndpointInput = ({
 export default EndpointInput;
 
 const FormWrapper = styled.div`
-  margin-top: -10px;
+  margin-top: -8px;
 `;
 
 const StyledLabel = styled.label`
