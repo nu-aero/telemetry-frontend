@@ -5,7 +5,7 @@ import EndpointInput from './EndpointInput';
 
 import { Context } from '../../../shared/Context';
 
-import { ToggleableProps } from '../../../shared/types';
+import { ToggleableProps, DataPoint } from '../../../shared/types';
 
 import axios, { AxiosRequestConfig } from 'axios';
 
@@ -20,14 +20,30 @@ const Indicator = ({
 }: Props) => {
   const context = useContext(Context);
   
-  const [endpoint, setEndpoint] = useState('localhost:5000/');
+  const [endpoint, setEndpoint] = useState(localStorage.getItem('endpoint') ?? '');
 
   useEffect(() => {
+    if (endpoint !== localStorage.getItem('endpoint')) {
+      localStorage.setItem('endpoint', endpoint);
+    }
     axios({
       method: 'get',
-      url: `//${endpoint}`,
+      baseURL: `//${endpoint}`,
+      url: `/api/read-sensor`,
+      timeout: 500,
     }).then(res => {
-      console.log(res);
+      let casted = res.data as DataPoint;
+      if (
+        casted.time !== undefined &&
+        casted.s0 !== undefined &&
+        casted.s5 !== undefined
+      ) {
+        setIsLive(true);
+      } else {
+        setIsLive(false);
+      }
+    }).catch(err => {
+      setIsLive(false);
     });
   }, [endpoint]);
 

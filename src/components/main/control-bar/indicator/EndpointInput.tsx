@@ -30,6 +30,11 @@ const EndpointInput = ({
     }
   }
 
+  const handleDisconnect = () => {
+    setEndpoint('');
+    context.setModalOpen(false);
+  }
+
   return (
     <FormWrapper>
       <StyledLabel>
@@ -37,16 +42,24 @@ const EndpointInput = ({
         <StyledInput
           type='text'
           value={newEndpoint}
-          placeholder={endpoint}
+          placeholder={endpoint ? endpoint : 'Enter base url'}
           onInput={handleInput}
         />
       </StyledLabel>
-      <Submit
-        active={newEndpoint !== ''}
-        onClick={handleSubmit}
-      >
-        Update
-      </Submit>
+      <ButtonTray>
+        <Submit
+          active={newEndpoint !== ''}
+          onClick={handleSubmit}
+        >
+          Connect
+        </Submit>
+        <Submit
+          active={true}
+          onClick={handleDisconnect}
+        >
+          Disconnect
+        </Submit>
+      </ButtonTray>
     </FormWrapper>
   );
 }
@@ -83,6 +96,11 @@ const StyledInput = styled.input`
   }
 `;
 
+const ButtonTray = styled.div`
+  margin-top: 10px;
+  display: flex;
+`;
+
 const Submit = styled.div<ToggleableProps>`
   font-size: 14px;
   border: 2px solid #657b83;
@@ -92,8 +110,8 @@ const Submit = styled.div<ToggleableProps>`
   padding: 0 8px;
   display: flex;
   align-items: center;
-  margin-top: 10px;
   user-select: none;
   cursor: ${props => props.active ? 'pointer' : 'default'};
   filter: ${props => props.active ? 'none' : 'opacity(0.41)'};
+  margin-right: 10px;
 `;
