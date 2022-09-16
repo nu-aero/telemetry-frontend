@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 
-const Graph = () => {
+type Props = {
+  sensor: string;
+}
+
+const Graph = ({
+  sensor,
+}: Props) => {
   return (
     <GraphWrapper>
-      Graph
+      {sensor} Graph
     </GraphWrapper>
   );
 }

@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 
-const Meter = () => {
+type Props = {
+  sensor: string;
+}
+
+const Meter = ({
+  sensor,
+}: Props) => {
   return (
     <MeterWrapper>
-      Meter
+      {sensor} Meter
     </MeterWrapper>
   );
 }

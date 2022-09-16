@@ -2,13 +2,21 @@ import styled from 'styled-components';
 
 import Graph from './Graph';
 
+const DUMMY_DATA = [
+  'Altitude',
+  'Airspeed',
+  'Battery Level',
+  'Battery Temp',
+  'Motor RPM',
+  'Motor Temp'
+];
+
 const Graphs = () => {
   return (
     <GraphsWrapper>
       {
-        // Dummy Data
-        [0, 1, 2, 3, 4, 5].map((e) => {
-          return <Graph key={e} />;
+        DUMMY_DATA.map((e, i) => {
+          return <Graph sensor={e} key={i} />;
         })
       }
     </GraphsWrapper>

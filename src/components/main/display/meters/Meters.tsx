@@ -2,13 +2,22 @@ import styled from 'styled-components';
 
 import Meter from './Meter';
 
+const DUMMY_DATA = [
+  'Altitude',
+  'Airspeed',
+  'Battery Level',
+  'Battery Temp',
+  'Motor RPM',
+  'Motor Temp'
+];
+
 const Meters = () => {
   return (
     <MetersWrapper>
       {
         // Dummy Data
-        [0, 1, 2, 3, 4, 5].map((e) => {
-          return <Meter key={e} />;
+        DUMMY_DATA.map((e, i) => {
+          return <Meter sensor={e} key={i} />;
         })
       }
     </MetersWrapper>
