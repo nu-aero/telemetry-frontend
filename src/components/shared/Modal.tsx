@@ -9,12 +9,12 @@ const Modal = () => {
   const context = useContext(Context);
 
   const closeModal = () => {
-    context.setModalOpen!(false);
+    context.setModalOpen(false);
   }
 
   return (
     <ModalWrapper
-      active={context.modalOpen!}
+      active={context.modalOpen}
       onClick={closeModal}
     >
       <ModalContent onClick={e => e.stopPropagation()}>

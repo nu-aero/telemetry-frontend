@@ -1,7 +1,12 @@
 import React from "react";
 import { ContextProps } from "./types";
 
-const Context = React.createContext<Partial<ContextProps>>({});
+const Context = React.createContext<ContextProps>({
+  modalOpen: false,
+  modalContent: <></>,
+  setModalOpen: (modalOpen: boolean) => {},
+  setModalContent: (modalContent: JSX.Element) => {},
+});
 
 const { Provider } = Context;
 const ContextConsumer = Context.Consumer;

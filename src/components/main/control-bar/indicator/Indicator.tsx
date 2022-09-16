@@ -21,13 +21,13 @@ const Indicator = ({
   const [endpoint, setEndpoint] = useState('localhost:8080');
 
   const toggleModal = () => {
-    context.setModalContent!(
+    context.setModalContent(
       <EndpointInput
         endpoint={endpoint}
         setEndpoint={setEndpoint}
       />
     );
-    context.setModalOpen!(true);
+    context.setModalOpen(true);
   }
 
   return (

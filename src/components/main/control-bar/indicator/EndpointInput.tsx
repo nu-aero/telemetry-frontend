@@ -26,7 +26,7 @@ const EndpointInput = ({
   const handleSubmit = () => {
     if (newEndpoint !== '') {
       setEndpoint(newEndpoint);
-      context.setModalOpen!(false);
+      context.setModalOpen(false);
     }
   }
 
