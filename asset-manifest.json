@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/telemetry-frontend/static/js/main.68410cb6.js",
+    "main.js": "/telemetry-frontend/static/js/main.5651f275.js",
     "index.html": "/telemetry-frontend/index.html",
     "static/media/file_upload.svg": "/telemetry-frontend/static/media/file_upload.91247741be7923949ebc2dfce68f9cac.svg",
-    "main.68410cb6.js.map": "/telemetry-frontend/static/js/main.68410cb6.js.map"
+    "main.5651f275.js.map": "/telemetry-frontend/static/js/main.5651f275.js.map"
   },
   "entrypoints": [
-    "static/js/main.68410cb6.js"
+    "static/js/main.5651f275.js"
   ]
 }
