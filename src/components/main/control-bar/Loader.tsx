@@ -4,16 +4,25 @@ import uploadIcon from '../../../icons/file_upload.svg';
 
 const Loader = () => {
   return (
-    <LoaderWrapper>
-      <Icon src={uploadIcon} />
-      <p>Load</p>
-    </LoaderWrapper>
+    <label>
+      <HiddenInput
+        type='file'
+      />
+      <LoaderFacade>
+        <Icon src={uploadIcon} />
+        <p>Load</p>
+      </LoaderFacade>
+    </label>
   );
 }
 
 export default Loader;
 
-const LoaderWrapper = styled.div`
+const HiddenInput = styled.input`
+  display: none;
+`;
+
+const LoaderFacade = styled.div`
   display: flex;
   align-items: center;
   user-select: none;
