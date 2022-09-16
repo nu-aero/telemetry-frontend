@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import ToggleableProps from '../../../types/ToggleableProps';
+import { ToggleableProps } from '../../shared/types';
 
 type Props = {
   mode: 'graphs' | 'meters';

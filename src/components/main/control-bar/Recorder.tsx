@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import ToggleableProps from '../../../types/ToggleableProps';
+import { ToggleableProps } from '../../shared/types';
 
 const Recorder = () => {
   const [recording, setRecording] = useState(false);
@@ -11,43 +11,21 @@ const Recorder = () => {
   }
 
   return (
-    <RecorderWrapper>
-      <Indicator active={true}>
-        LIVE
-      </Indicator>
-      <RecordButton onClick={handleClick}>
-        <RecordIcon active={recording} />
-        <p>
-          {recording ? 'STOP' : 'REC'}
-        </p>
-      </RecordButton>
-    </RecorderWrapper>
+    <RecordButton onClick={handleClick}>
+      <RecordIcon active={recording} />
+      <p>
+        {recording ? 'STOP' : 'REC'}
+      </p>
+    </RecordButton>
   );
 }
 
 export default Recorder;
 
-const RecorderWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  height: fit-content;
-`;
-
-const Indicator = styled.div<ToggleableProps>`
-  border-radius: 14px;
-  border: 2px solid ${props => props.active ? '#dc322f' : '#657b83'};
-  color: ${props => props.active ? '#dc322f' : '#657b83'};
-  height: 28px;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  width: fit-content;
-`;
-
 const RecordButton = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 40px;
+  margin-left: 20px;
   width: 76px;
   user-select: none;
   cursor: pointer;

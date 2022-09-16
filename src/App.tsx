@@ -1,15 +1,20 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
+import { ContextProvider } from './components/shared/Context';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
+import Modal from './components/shared/Modal';
 
 const App = () => {
   return (
-    <AppWrapper>
-      <GlobalStyle />
-      <Header />
-      <Main />
-    </AppWrapper>
+    <ContextProvider>
+      <AppWrapper>
+        <GlobalStyle />
+        <Header />
+        <Main />
+        <Modal />
+      </AppWrapper>
+    </ContextProvider>
   );
 }
 
