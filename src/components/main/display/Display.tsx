@@ -37,13 +37,13 @@ export default Display;
 const DisplayWrapper = styled.div`
   flex: 1;
   padding: 20px 40px;
-  overflow-y: hidden;
   display: flex;
   flex-direction: column;
 `;
 
+// TODO: fix janky-ass height calculation
 const ContentWrapper = styled.div`
-  flex: 1;
+  height: calc(100vh - 241px);
   overflow-y: auto;
 `;
 
