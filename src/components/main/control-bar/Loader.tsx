@@ -16,8 +16,6 @@ export default Loader;
 const LoaderWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 40px;
-  width: 76px;
   user-select: none;
   cursor: pointer;
 
