@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import EndpointInput from './EndpointInput';
@@ -6,6 +6,8 @@ import EndpointInput from './EndpointInput';
 import { Context } from '../../../shared/Context';
 
 import { ToggleableProps } from '../../../shared/types';
+
+import axios, { AxiosRequestConfig } from 'axios';
 
 type Props = {
   isLive: boolean;
@@ -18,7 +20,16 @@ const Indicator = ({
 }: Props) => {
   const context = useContext(Context);
   
-  const [endpoint, setEndpoint] = useState('localhost:8080');
+  const [endpoint, setEndpoint] = useState('localhost:5000/');
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `//${endpoint}`,
+    }).then(res => {
+      console.log(res);
+    });
+  }, [endpoint]);
 
   const toggleModal = () => {
     context.setModalContent(
