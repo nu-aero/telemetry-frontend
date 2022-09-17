@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 
 import ModeSelector from './ModeSelector';
 import Graphs from './graphs/Graphs';
 import Meters from './meters/Meters';
 
+import { Context } from '../../shared/Context';
+
 const Display = () => {
+  const context = useContext(Context);
+
   const [mode, setMode] = useState<'graphs' | 'meters'>('graphs');
 
   const handleClick = () => {

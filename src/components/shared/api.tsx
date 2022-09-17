@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { RequestType, DataPoint } from './types';
 
-export const checkConnection = ({
+export const getData = ({
   baseUrl,
   endpoint,
   method,
@@ -22,6 +22,7 @@ export const checkConnection = ({
       casted.s0 !== undefined &&
       casted.s5 !== undefined
     ) {
+      console.log(res.data);
       successCallback();
     } else {
       failureCallback();

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import BaseURLInput from './BaseUrlInput';
 
-import { checkConnection } from '../../../shared/api';
+import { getData } from '../../../shared/api';
 import { Context } from '../../../shared/Context';
 
 import { ToggleableProps, RequestType } from '../../../shared/types';
@@ -12,28 +12,20 @@ const Indicator = () => {
   const context = useContext(Context);
   
   const [baseUrl, setBaseUrl] = useState(localStorage.getItem('baseUrl') ?? '');
-  const [req, setReq] = useState<RequestType>({
-    baseUrl: baseUrl,
-    endpoint: '/api/read-sensors',
-    method: 'get',
-    timeout: 500,
-    failureCallback: () => context.setIsLive(false),
-    successCallback: () => context.setIsLive(true),
-  })
 
   useEffect(() => {
     if (baseUrl !== localStorage.getItem('baseUrl')) {
       localStorage.setItem('baseUrl', baseUrl);
     }
-    setReq(prevState => ({
-      ...prevState,
+    context.setRequest({
+      ...context.request,
       baseUrl: baseUrl,
-    }));    
+    });    
   }, [baseUrl]);
 
   useEffect(() => {
-    checkConnection(req);
-  }, [req]);
+    getData(context.request);
+  }, [context.request]);
 
   const toggleModal = () => {
     context.setModalContent(

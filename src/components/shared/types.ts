@@ -1,10 +1,21 @@
+export interface RequestType {
+  baseUrl: string;
+  endpoint: string;
+  method: string;
+  data?: any;
+  timeout?: number;
+  failureCallback?: Function;
+  successCallback?: Function;
+}
 export interface ContextProps {
   modalOpen: boolean;
   modalContent: JSX.Element;
   isLive: boolean;
+  request: RequestType;
   setModalOpen: (modalOpen: boolean) => void;
   setModalContent: (modalContent: JSX.Element) => void;
   setIsLive: (isLive: boolean) => void;
+  setRequest: (request: RequestType) => void;
 }
 
 export interface ToggleableProps {
@@ -19,14 +30,4 @@ export interface DataPoint {
   s3: number;
   s4: number;
   s5: number;
-}
-
-export interface RequestType {
-  baseUrl: string;
-  endpoint: string;
-  method: string;
-  data?: any;
-  timeout?: number;
-  failureCallback?: Function;
-  successCallback?: Function;
 }
